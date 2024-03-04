@@ -10,6 +10,8 @@ import React from "react"; // import React
 // If the user clicks OK, the deck is deleted and the deleted deck is no longer visible on the Home Screen.
 // You can use window.confirm() to create the modal dialog shown 'Delete this deck? You will not be able to recover it.'
 
+// Two datasets: Decks and Cards
+
 function Home() {
     return (
         <>
