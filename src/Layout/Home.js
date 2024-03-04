@@ -13,7 +13,7 @@ import React from "react"; // import React
 function Home() {
     return (
         <>
-            <button type="button" class="btn btn-secondary">Create Deck</button>
+            <button type="button" class="btn btn-secondary">+ Create Deck</button>
             <p>This is the Home Screen.</p>
         </>
     );
