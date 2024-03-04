@@ -12,7 +12,10 @@ import React from "react"; // import React
 
 function Home() {
     return (
-        <p>This is the Home Screen.</p>
+        <>
+            <button type="button" class="btn btn-secondary">Create Deck</button>
+            <p>This is the Home Screen.</p>
+        </>
     );
 }
 
