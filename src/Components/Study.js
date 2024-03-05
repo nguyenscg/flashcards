@@ -49,6 +49,27 @@ function Study() {
             setFrontCard(true);
         }
     }
+    const enoughCards = () => {
+        return (
+          <div className="card">
+            {cards.map((card, index) => {
+             if(index === cardNumber - 1)
+              return (
+                <div className="card-body" key={card.id}>
+                  <div className="card-title">
+                    {`Card ${index + 1} of ${cards.length}`}
+                  </div>
+                  <div className="card-text">
+                    {frontCard? card.front : card.back}
+                  </div>
+                  <button onClick={flipCard} className="btn btn-secondary mx-1">Flip</button>
+                  {showNextButton(cards, index)}
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
 
     // Not enough cards
     // Studying a Deck with two or fewer cards should display a "Not enough cards" message and a button to add cards to the deck
