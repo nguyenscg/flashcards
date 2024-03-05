@@ -15,6 +15,8 @@ import { Link, useParams} from "react-router-dom"; // import Link element and us
 function Study() {
     const [deck, setDeck] = useState({});
     const { deckId } = useParams(); // call the useParams hook to get the deckId from URL
+    const [cardCount, setCardCount] = useState(1); // initalize cardCount to be 1 and update the state with setCardCount
+    const [frontCard, setfrontCard] = useState(true); // set the frontCard state to be true and update the state with setFrontCard
 
     // useEffect hook to get the readDeck function data to read an ID
     useEffect(() => {
@@ -30,6 +32,8 @@ function Study() {
         fetchDeck();
     }, [deckId]); // rerun the effect if deckId changes; 
 
+
+
     return (
         <div>
             <nav aria-label="breadcrumb">
@@ -42,7 +46,7 @@ function Study() {
             <h1>Study: {deck.name}</h1>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">Card 1 of card.length</h5>
+                    <h5 className="card-title">{cardCount} of card.length</h5>
                     <p className="card-text">{deck.description}</p>
                     <button type="button" className="btn btn-secondary">Flip</button>
                 </div>
