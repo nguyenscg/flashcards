@@ -52,6 +52,8 @@ function CreateDeck() {
                     value={description}
                 />
             </label>
+            <button type="button" className="btn btn-secondary">Cancel</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
         </form>
         </>
     )
