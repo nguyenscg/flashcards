@@ -6,9 +6,37 @@
 // if user clicks on either save or cancel, the user is taken to the deck screen
 
 import React from "react";
+import { readDeck, readCard } from "../utils/api/index"; // import readDeck function and readCard function
+import { useParams } from "react-router-dom"; // import useParams hook
 
 function EditCard() {
+    const { deckId } = useParams();
 
+
+    return (
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to={`/decks/:deckId`}>Deck {deck.name}</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Edit Card Num</li>
+                </ol>
+            </nav>
+            <h2>Edit Card</h2>
+            <form>
+                <div className="form-group">
+                    <label for="front">Front</label>
+                    <textarea id="front" className="form-control" placeholder="Front side of card"></textarea>
+                </div>
+                <div className="form-group">
+                    <label for="back">Back</label>
+                    <textarea id="back" className="form-control" placeholder="Back side of card"></textarea>
+                </div>
+                <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
+                <button type="button" className="btn btn-primary mx-1">Submit</button>
+            </form>
+        </div>
+    );
 }
 
 export default EditCard;
