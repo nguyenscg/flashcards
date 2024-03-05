@@ -7,7 +7,7 @@ function Study() {
     const [deck, setDeck] = useState({});
     const { deckId } = useParams(); // call the useParams hook to get the deckId from URL
     const [cards, setCards] = useState([]); // initalize cards to be an empty array. update the state with setCards
-    const [cardCount, setCardCount] = useState(0); // initalize cardCount to be 1 and update the state with setCardCount
+    const [cardCount, setCardCount] = useState(1); // initalize cardCount to be 1 and update the state with setCardCount
     const [frontCard, setFrontCard] = useState(true); // set the frontCard state to be true and update the state with setFrontCard
     const history = useHistory();
 
