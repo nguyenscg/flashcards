@@ -10,19 +10,22 @@
 // Studying a deck with two or fewer cards should display "Not enough cards" message and a button to add cards to the deck
 import React, { useState, useEffect } from "react";
 import { readDeck } from "../utils/api/index"; // import readDeck function
-import { Link, useParams } from "react-router-dom"; // import Link element
+import { Link } from "react-router-dom"; // import Link element
 
-function Study() {
-    const { deckId } = useParams();
+function Study({ deckId }) {
     const [deck, setDeck] = useState({});
-
     useEffect(() => {
         const fetchDeck = async () => {
-            const response = await readDeck(deckId);
-            setDeck(response);
+            try {
+                const data = await readDeck(deckId);
+                setDeck(data);
+            }
+            catch(error) {
+                console.log("Error fetching deck: ", error);
+            }
         }
         fetchDeck();
-    }, []);
+    }, [deckId]); // rerun the effect if deckId changes; 
 
     return (
         <div>
