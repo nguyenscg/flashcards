@@ -16,11 +16,12 @@ import { useHistory } from "react-router-dom";
 // The Home Screen is the first page the user sees. It is displayed at '/';
 function Home() {
     const [decks, setDecks] = useState([]);
+    let history = useHistory();
 
     // useEffect hook to 'GET' a list of decks from api when the component renders. Display 'listDecks'
     useEffect(() => {
-        const abortController = new AbortController(); // create a new 'AbortController'
         const fetchDecks = async () => {
+            const abortController = new AbortController(); // create a new 'AbortController'
             try {
                 const decksData = await listDecks();
                 setDecks(decksData);
@@ -30,8 +31,6 @@ function Home() {
         };
         fetchDecks();
     }, []); // empty dependency array, run effect once when component renders
-    
-    let history = useHistory();
 
     // createDeck handler
     const handleCreateDeck = () => {
