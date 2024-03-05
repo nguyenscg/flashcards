@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"; // import React
 import { listDecks } from "../utils/api/index"; // import listDecks API to be able to useEffect and fetch the api
+import { useHistory } from "react-router-dom";
 // Has the following features:
 // 1) A Create Deck button is shown, and clicking it brings the user to the Create Deck screen.
 // 2) Existing decks are each shown with the deck name, the number of cards, and a Study, View, and Delete button.
@@ -28,10 +29,24 @@ function Home() {
         };
         fetchDecks();
     }, []); // run effect once when component renders
+    
+    let history = useHistory();
+    const handleCreateDeck = () => {
+        history.push("/decks/new");
+    }
     return (
         <>
-            <button type="button" class="btn btn-secondary">+ Create Deck</button>
+            <button type="button" class="btn btn-secondary" onClick={handleCreateDeck}>+ Create Deck</button>
             <p>This is the Home Screen.</p>
+            {decks.map((deck) => (
+                <div key={deck.id}>
+                    <h3>{deck.name}</h3>
+                    <p>{`${deck.cards.length} cards`}</p>
+                    <button type="button" class="btn btn-secondary">View</button>
+                    <button type="button" class="btn btn-primary">Study</button>
+                    <button type="button" class="btn btn-warning">Delete</button>
+                </div>
+            ))}
         </>
     );
 }
