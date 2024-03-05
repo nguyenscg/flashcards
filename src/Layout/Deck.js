@@ -37,12 +37,19 @@ function Deck() {
                 <div className="card-body">
                     <h2 className="card-title">{deck.name}</h2>
                     <p>{deck.description}</p>
-                    <button type="button" className="btn btn-secondary">Edit</button>
-                    <button type="button" className="btn btn-primary">Study</button>
-                    <button type="button" className="btn btn-primary">Add Cards</button>
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <div className="btn-toolbar">
+                        <div className="btn-group mr-2" role="group">
+                            <button type="button" className="btn btn-secondary mx-2">Edit</button>
+                            <button type="button" className="btn btn-primary mx-2">Study</button>
+                            <button type="button" className="btn btn-primary">Add Cards</button>
+                        </div>
+                        <div className="btn-group" role="group">
+                            <button type="button" className="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <h2>Cards</h2>
         </>
     )
 }
