@@ -15,6 +15,19 @@ import { listDecks } from "../utils/api/index"; // import listDecks API to be ab
 // The Home Screen is the first page the user sees. It is displayed at '/';
 function Home() {
     const [decks, setDecks] = useState([]);
+
+    // useEffect hook to 'GET' a list of decks from api when the component renders. Display 'listDecks'
+    useEffect(() => {
+        const fetchDecks = async () => {
+            try {
+                const decksData = await listDecks();
+                setDecks(decksData);
+            } catch {
+                console.log("Error fetching decks:", error)
+            }
+        };
+        fetchDecks();
+    }, []); // run effect once when component renders
     return (
         <>
             <button type="button" class="btn btn-secondary">+ Create Deck</button>
