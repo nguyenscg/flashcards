@@ -41,78 +41,75 @@ function Study() {
           }
         }
       }
-      
-      // flip button handler
-      const flipCard = () => {
-        if (frontCard) { // if the card is on it's front side
-            setFrontCard(false); // set the state to be false so it flips to the backside
-        } else {
-            setFrontCard(true);
-        }
+    
+    // flip button handler
+    const flipCard = () => {
+      if (frontCard) { // if the card is on it's front side
+        setFrontCard(false); // set the state to be false so it flips to the backside
+      } else {
+        setFrontCard(true);
+      }
     }
+    
     const enoughCards = () => {
-        return (
-          <div className="card">
-            {cards.map((card, index) => {
-             if(index === cardCount - 1)
-              return (
-                <div className="card-body" key={card.id}>
-                  <div className="card-title">
-                    {`Card ${index + 1} of ${cards.length}`}
-                  </div>
-                  <div className="card-text">
-                    {frontCard? card.front : card.back}
-                  </div>
-                  <button onClick={flipCard} className="btn btn-secondary mx-1">Flip</button>
-                  {showNextButton(cards, index)}
+      return (
+        <div className="card">
+          {cards.map((card, index) => {
+           if(index === cardCount - 1)
+            return (
+              <div className="card-body" key={card.id}>
+                <div className="card-title">
+                  {`Card ${index + 1} of ${cards.length}`}
                 </div>
-              );
-            })}
-          </div>
-        );
-      }
-
-      const showNextButton = (cards, index) => {
-        if (frontCard) {
-          return null;
-        } else {
-          return (
-            <button className="btn btn-primary mx-1" onClick={() => handleNextCard(index + 1, cards.length)}>Next</button>
-          );
-        }
-      }
-      
-    // Not enough cards
-    // Studying a Deck with two or fewer cards should display a "Not enough cards" message and a button to add cards to the deck
-    // Clicking 'Add Cards' button should take the user to the Add Card screen
-      const notEnoughCards = () => {
+                <div className="card-text">
+                  {frontCard? card.front : card.back}
+                </div>
+                <button onClick={flipCard} className="btn btn-secondary mx-1">Flip</button>
+                {showNextButton(cards, index)}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+    
+    const showNextButton = (cards, index) => {
+      if (frontCard) {
+        return null;
+      } else {
         return (
-          <div>
-            <h2>Not enough cards.</h2>
-            <p>You need at least 3 cards to study. There are ${cards.length} cards in this deck.</p>
-            <Link to={`/decks/${deck.id}/cards/new`} className="btn btn-primary mx-1">Add Cards</Link></div>
+          <button className="btn btn-primary mx-1" onClick={() => handleNextCard(index + 1, cards.length)}>Next</button>
         );
       }
-  
-
+    }
+    
+    const notEnoughCards = () => {
       return (
         <div>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
-            <li className="breadcrumb-item active">Study</li>
-          </ol>
+          <h2>Not enough cards.</h2>
+          <p>You need at least 3 cards to study. There are ${cards.length} cards in this deck.</p>
+          <Link to={`/decks/${deck.id}/cards/new`} className="btn btn-primary mx-1">Add Cards</Link></div>
+      );
+    }
+    
+    return (
+      <div>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+          <li className="breadcrumb-item active">Study</li>
+        </ol>
+        <div>
+          <h2>{deck.name}: Study</h2>
           <div>
-            <h2>{deck.name}: Study</h2>
-            <div>
-              {cards.length > 2
-               ? enoughCards()
-               : notEnoughCards()
-              }
-            </div>
+            {cards.length > 2
+             ? enoughCards()
+             : notEnoughCards()
+            }
           </div>
         </div>
-      )
+      </div>
+    )
 }
 
 export default Study;
