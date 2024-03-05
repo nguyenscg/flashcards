@@ -11,16 +11,34 @@ import { Link, useParams, useHistory } from "react-router-dom"; // import Link e
 
 
 function AddCard() {
+    const { deckId } = useParams();
+    const [deck, setDeck] = useState({});
+    
+    useEffect(() => {
+        const fetchDeck = async () => {
+            try {
+                const deckData = await readDeck(deckId);
+                setDeck(deckData);
+            }
+            catch(error) {
+                console.log("Error loading deck: ", error);
+            }
+        }
+        fetchDeck();
+    }, []);
 
     return (
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li class="breadcrumb-item"><a href="#">Deck</a></li>
+                    <li class="breadcrumb-item"><a href="#">{deck.name}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add Card</li>
                 </ol>
             </nav>
+            <h2>{deck.name}: Add Card</h2>
+            Front 
+            Back
         </div>
     );
 }
