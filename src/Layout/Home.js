@@ -64,9 +64,9 @@ function Home() {
             <button type="button" className="btn btn-secondary mb-2" onClick={handleCreateDeck}>+ Create Deck</button>
                 {decks.map((deck) => (
                 <div className="card border-light mb-3" key={deck.id}>
-                    <div className="card-body">
-                        <h3 className="card-title">{deck.name}</h3>
-                        <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
+                    <div className="card-body d-flex justify-content-between align-items-center">
+                        <h3 className="card-title mb-0">{deck.name}</h3>
+                        <div className="card-subtitle mb-0 text-muted">{`${deck.cards.length} cards`}</div>
                     </div>
                     <div className="card-text">{deck.description}</div>
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
