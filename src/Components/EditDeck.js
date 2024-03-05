@@ -57,7 +57,7 @@ function EditDeck() {
             </ol>
         </nav>
         <h2>Edit Deck</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label for="name">Name</label>
                 <textarea 
