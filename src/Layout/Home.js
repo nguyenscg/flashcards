@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"; // import React
 import { listDecks, deleteDeck } from "../utils/api/index"; // import listDecks and deleteDeck API to be able to useEffect and fetch the api
 import { useHistory } from "react-router-dom"; // import useHistory hook
 // Has the following features:
-// 1) A Create Deck button is shown, and clicking it brings the user to the Create Deck screen.
 // 2) Existing decks are each shown with the deck name, the number of cards, and a Study, View, and Delete button.
 // 3) Clicking the Study button brings the user to the Study screen.
 // 4) Clicking the View button brings the user to the Deck screen.
@@ -32,7 +31,7 @@ function Home() {
         fetchDecks(); // load decks data
     }, []); // empty dependency array, run effect once when component renders
 
-    // createDeck handler
+    // createDeck handler: clicking it brings the user to the Create Deck screen.
     const handleCreateDeck = () => {
         history.push("/decks/new");
     }
