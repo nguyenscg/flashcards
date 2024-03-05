@@ -28,11 +28,12 @@ function Study() {
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li class="breadcrumb-item"><a href="#">{deck.name}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Study</li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/decks/${deckId}">{deck.name}</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Study</li>
                  </ol>
             </nav>
+            <h1>Study: {deck.name}</h1>
         </div>
     )
 }
