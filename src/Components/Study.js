@@ -34,12 +34,15 @@ function Study() {
 
     // next button handler: two parameters 'index', 'total'
     const handleNextCard = (index, total) => { // index - current position in card deck, total is total number
-        if (index >= total) {
-          const restart = window.confirm("Restart cards? Click 'cancel' to return to the home page.");
-          if (restart) {
-            cardCount = 1;
-            frontCard = true;
-          } else {
+        if (index >= total) { // if index is less than total number of cards, means more cards to show
+          setCardCount(cardCount + 1); // increment card count to show next card
+          setFrontCard(true); // show front card
+        } else { // if current index is not less than total, means we've reached the end of the deck
+          if (window.confirm("Restart cards? \n Click 'cancel' to return to the home page.")) {
+            // restart prompt
+            setCardCount(1); // if confirmed, restart card count to be 1
+            setFrontCard(true); // show front of card
+          } else { // if user does not want to restart, redirected to home page
             history.push("/");
           }
         }
