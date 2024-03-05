@@ -14,9 +14,9 @@ function CreateDeck() {
     const [description, setDescription] = useState("");
     
     const handleSubmit = (event) => {
-        event.preventDefault();
-        setName("");
-        setDescription("");
+        event.preventDefault(); // prevent default behavior of form submissions
+        setName(""); // this clears name input after form submits
+        setDescription(""); // this clears description textarea after form submits
     }
     
     const handleNameChange = (event) => setName(event.target.value);
@@ -30,7 +30,7 @@ function CreateDeck() {
                 <li className="breadcrumb-item active" aria-current="page">Create Deck</li>
             </ol>
         </nav>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name">
                 Name
                 <input
@@ -52,8 +52,8 @@ function CreateDeck() {
                     value={description}
                 />
             </label>
-            <button type="button" className="btn btn-secondary">Cancel</button>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="button" className="btn btn-secondary"><Link to="/">Cancel</Link></button>
+            <button type="submit" className="btn btn-primary"><Link to="/decks/:deckId">Submit</Link></button>
         </form>
         </>
     )
