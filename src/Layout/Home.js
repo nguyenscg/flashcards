@@ -36,11 +36,11 @@ function Home() {
     }
     return (
         <div>
-            <button type="button" className="btn btn-secondary mb-2" onClick={handleCreateDeck}>+ Create Deck</button>
+            <button type="button" className="btn btn-secondary" onClick={handleCreateDeck}>+ Create Deck</button>
                 {decks.map((deck) => (
-                <div className="card border-light mb-3" style={{ maxWidth: '18rem' }} key={deck.id}>
+                <div className="card border-light mb-3" key={deck.id}>
                     <div className="card-body">
-                        <h5 className="card-title">{deck.name}</h5>
+                        <h3 className="card-title">{deck.name}</h3>
                     </div>
                     <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
                     <div className="card-text">{deck.description}</div>
