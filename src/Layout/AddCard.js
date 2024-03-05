@@ -30,15 +30,25 @@ function AddCard() {
     return (
         <div>
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li class="breadcrumb-item"><a href="#">{deck.name}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Card</li>
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><a href="#">{deck.name}</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Add Card</li>
                 </ol>
             </nav>
             <h2>{deck.name}: Add Card</h2>
-            Front 
-            Back
+            <form>
+                <div className="form-group">
+                    <label for="front">Front</label>
+                    <textarea id="front" className="form-control" placeholder="Front side of card"></textarea>
+                </div>
+                <div className="form-group">
+                    <label for="back">Back</label>
+                    <textarea id="back" className="form-control" placeholder="Back side of card"></textarea>
+                </div>
+                <button type="button" className="btn btn-secondary">Done</button>
+                <button type="button" className="btn btn-primary">Save</button>
+            </form>
         </div>
     );
 }
