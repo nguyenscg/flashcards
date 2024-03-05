@@ -6,3 +6,6 @@
 // --- description field is a <textarea> field that can be multiple lines of text
 // IF user clicks submit, the user is taken to the DECK screen
 // IF user clicks cancel, the user is taken to the HOME screen
+import React from "react"; // import react
+
+export default CreateDeck;
