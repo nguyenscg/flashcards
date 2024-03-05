@@ -80,10 +80,19 @@ function Study() {
           );
         }
       }
-
+      
     // Not enough cards
     // Studying a Deck with two or fewer cards should display a "Not enough cards" message and a button to add cards to the deck
     // Clicking 'Add Cards' button should take the user to the Add Card screen
+      const notEnoughCards = () => {
+        return (
+          <div>
+            <h2>Not enough cards.</h2>
+            <p>You need at least 3 cards to study. There are ${card.length} cards in this deck.</p>
+            <Link to={`/decks/${deck.id}/cards/new`} className="btn btn-primary mx-1">Add Cards</Link></div>
+        );
+      }
+  
 
     return (
         <div>
