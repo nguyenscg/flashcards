@@ -7,11 +7,12 @@
 // IF user clicks submit, the user is taken to the DECK screen
 // IF user clicks cancel, the user is taken to the HOME screen
 import React, { useState } from "react"; // import react & useState hook
-import { Link } from "react-router-dom"; // import Link element to navigate to another page
+import { Link, useHistory } from "react-router-dom"; // import Link element to navigate to another page and import useHistory hook
 
 function CreateDeck() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const history = useHistory();
     
     const handleSubmit = (event) => {
         event.preventDefault(); // prevent default behavior of form submissions
@@ -21,6 +22,10 @@ function CreateDeck() {
     
     const handleNameChange = (event) => setName(event.target.value);
     const handleDescriptionChange = (event) => setDescription(event.target.value);
+    
+    const handleCancel = () => {
+        history.push("/");
+    }
     
     return (
         <>
@@ -40,8 +45,8 @@ function CreateDeck() {
                 <label for="description">Description</label>
                 <textarea id="description" placeholder="Brief description of the deck" name="description" onChange={handleDescriptionChange} value={description} class="form-control" />
             </div>
-            <button type="button" className="btn btn-secondary"><Link to="/">Cancel</Link></button>
-            <button type="submit" className="btn btn-primary"><Link to="/decks/:deckId">Submit</Link></button>
+            <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="btn btn-primary mx-1"><Link to="/decks/:deckId">Submit</Link></button>
         </form>
         </>
     )
