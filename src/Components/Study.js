@@ -54,7 +54,7 @@ function Study() {
         return (
           <div className="card">
             {cards.map((card, index) => {
-             if(index === cardNumber - 1)
+             if(index === cardCount - 1)
               return (
                 <div className="card-body" key={card.id}>
                   <div className="card-title">
