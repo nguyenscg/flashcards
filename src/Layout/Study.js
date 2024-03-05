@@ -10,7 +10,7 @@
 // Studying a deck with two or fewer cards should display "Not enough cards" message and a button to add cards to the deck
 import React, { useState, useEffect } from "react";
 import { readDeck } from "../utils/api/index"; // import readDeck function
-import { Link } from "react-router-dom"; // import Link element
+import { Link, useParams } from "react-router-dom"; // import Link element
 
 function Study() {
     const { deckId } = useParams();
