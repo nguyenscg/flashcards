@@ -11,6 +11,20 @@ import { Link, useParams, useHistory } from "react-router-dom"; // import Link e
 
 function EditDeck() {
     const { deckId } = useParams();
+    const [deck, setDeck] = useState({});
+    
+    useEffect(() => {
+        const fetchDeck = async () => {
+            try {
+                const deckData = await readDeck(deckId);
+                setDeck(deckData);
+            }
+            catch(error) {
+                console.log("Error loading deck: ", error);
+            }
+        }
+        fetchDeck();
+    }, [deckId]); // reruns effect when deckId changes
 
     return (
     <div>
