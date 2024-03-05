@@ -36,14 +36,18 @@ function Home() {
     }
     return (
         <>
-            <button type="button" class="btn btn-secondary" onClick={handleCreateDeck}>+ Create Deck</button>
+            <button type="button" className="btn btn-secondary mb-2" onClick={handleCreateDeck}>+ Create Deck</button>
+            
             {decks.map((deck) => (
-                <div key={deck.id}>
-                    <h3>{deck.name}</h3>
-                    <p>{`${deck.cards.length} cards`}</p>
-                    <button type="button" class="btn btn-secondary">View</button>
-                    <button type="button" class="btn btn-primary">Study</button>
-                    <button type="button" class="btn btn-warning">Delete</button>
+                <div className="card border-light mb-3" style={{ maxWidth: '18rem' }} key={deck.id}>
+                    <div className="card-body">
+                        <h5 className="card-title">{deck.name}</h5>
+                        </div>
+                    <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
+                    <div className="card-text">{deck.description}</div>
+                    <button type="button" className="btn btn-secondary">View</button>
+                    <button type="button" className="btn btn-primary">Study</button>
+                    <button type="button" className="btn btn-danger">Delete</button>
                 </div>
             ))}
         </>
