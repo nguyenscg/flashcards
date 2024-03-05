@@ -28,7 +28,7 @@ function Deck() {
     }, [deckId]); // empty dependency array, rerun the effect if the deck ID changes
 
     return (
-        <>
+        <div>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
@@ -52,17 +52,17 @@ function Deck() {
                 </div>
             </div>
             <h2>Cards</h2>
-            {cards.map((card) => {
-                <div className="card" key={card.id}>
-                    <div className="card-body">
-                        <div className="card-title">
-                            <div className="front">{card.front}</div>
-                            <div className="back">{card.back}</div>
-                        </div>
-                    </div>
-                </div>
-            })}
-        </>
+{cards.map((card) => (
+    <div className="card" key={card.id}>
+        <div className="card-body">
+            <div className="card-title">
+                <div className="front">{card.front}</div>
+                <div className="back">{card.back}</div>
+            </div>
+        </div>
+    </div>
+))}
+        </div>
     )
 }
 
