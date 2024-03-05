@@ -94,27 +94,24 @@ function Study() {
       }
   
 
-    return (
+      return (
         <div>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Study</li>
-                 </ol>
-            </nav>
-            <h1>Study: {deck.name}</h1>
-            {cards.map((card, index) => {
-                <div className="card" key={card.id}>
-                    <div className="card-body">
-                        <h5 className="card-title">{index + 1} of {cards.length}</h5>
-                        <p className="card-text">{card.front}</p>
-                        <button type="button" className="btn btn-secondary" onClick={() => flipCard(card.id)}>Flip</button>
-                    </div>
-                </div>
-            })}
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+            <li className="breadcrumb-item active">Study</li>
+          </ol>
+          <div>
+            <h2>{deck.name}: Study</h2>
+            <div>
+              {cards.length > 2
+               ? enoughCards()
+               : notEnoughCards()
+              }
+            </div>
+          </div>
         </div>
-    )
+      )
 }
 
 export default Study;
