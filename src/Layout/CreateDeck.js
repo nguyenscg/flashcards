@@ -7,6 +7,7 @@
 // IF user clicks submit, the user is taken to the DECK screen
 // IF user clicks cancel, the user is taken to the HOME screen
 import React, { useState } from "react"; // import react & useState hook
+import { Link } from "react-router-dom"; // import Link element to navigate to another page
 
 function CreateDeck() {
     const [name, setName] = useState("");
@@ -24,9 +25,9 @@ function CreateDeck() {
     return (
         <>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Create Deck</li>
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">Create Deck</li>
             </ol>
         </nav>
         <form>
