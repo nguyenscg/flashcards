@@ -17,6 +17,7 @@ function Study() {
             try {
                 const data = await readDeck(deckId);
                 setDeck(data);
+                setCards(data.cards);
             }
             catch(error) {
                 console.log("Error fetching deck: ", error);
