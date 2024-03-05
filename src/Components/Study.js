@@ -1,7 +1,7 @@
 // Path should be /decks/:deckId/study
 import React, { useState, useEffect } from "react";
 import { readDeck } from "../utils/api/index"; // import readDeck function to load the deck that is being studied
-import { Link, useParams} from "react-router-dom"; // import Link element and useParams hook
+import { Link, useParams, useHistory } from "react-router-dom"; // import Link element and useParams hook
 
 function Study() {
     const [deck, setDeck] = useState({});
@@ -9,6 +9,7 @@ function Study() {
     const [cards, setCards] = useState([]); // initalize cards to be an empty array. update the state with setCards
     const [cardCount, setCardCount] = useState(0); // initalize cardCount to be 1 and update the state with setCardCount
     const [frontCard, setFrontCard] = useState(true); // set the frontCard state to be true and update the state with setFrontCard
+    const history = useHistory();
 
     // useEffect hook to get the readDeck function data to read an ID
     useEffect(() => {
@@ -23,14 +24,6 @@ function Study() {
         }
         fetchDeck();
     }, [deckId]); // rerun the effect if deckId changes; 
-
-    // flip button handler
-    const handleFlip = () => {
-        // a button of the bottom of each card "flips" it to the other side
-        // after flipping card, screen shows a Next button to continue to the next card
-        setfrontCard(!frontCard);
-        <button type="button" className="btn btn-primary" onClick={handleNext}>Next</button>
-    }
 
     // next button handler: two parameters 'index', 'total'
     const handleNextCard = (index, total) => { // index - current position in card deck, total is total number
@@ -47,11 +40,15 @@ function Study() {
           }
         }
       }
-
-    // restart prompt
-    // After final card in the deck has been shown, a message (restart prompt) is shown offering the user the opportunity to restart the deck
-    // if the user does not restart the deck, they should return to the home screen
-    // if (window.confirm("Restart cards? Click 'cancel' to return to the home page."));
+      
+      // flip button handler
+      const flipCard = () => {
+        if (frontCard) { // if the card is on it's front side
+            setFrontCard(false); // set the state to be false so it flips to the backside
+        } else {
+            setFrontCard(true);
+        }
+    }
 
     // Not enough cards
     // Studying a Deck with two or fewer cards should display a "Not enough cards" message and a button to add cards to the deck
@@ -72,7 +69,7 @@ function Study() {
                     <div className="card-body">
                         <h5 className="card-title">{index + 1} of {cards.length}</h5>
                         <p className="card-text">{card.front}</p>
-                        <button type="button" className="btn btn-secondary" onClick={() => handleFlip(card.id)}>Flip</button>
+                        <button type="button" className="btn btn-secondary" onClick={() => flipCard(card.id)}>Flip</button>
                     </div>
                 </div>
             })}
