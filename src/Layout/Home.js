@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"; // import React
-// The Home Screen is the first page the user sees. It is displayed at '/';
+import { listDecks } from "../utils/api/index"; // import listDecks API to be able to useEffect and fetch the api
 // Has the following features:
 // 1) A Create Deck button is shown, and clicking it brings the user to the Create Deck screen.
 // 2) Existing decks are each shown with the deck name, the number of cards, and a Study, View, and Delete button.
@@ -12,7 +12,9 @@ import React, { useState, useEffect } from "react"; // import React
 
 // Two datasets: Decks and Cards
 
+// The Home Screen is the first page the user sees. It is displayed at '/';
 function Home() {
+    const [decks, setDecks] = useState([]);
     return (
         <>
             <button type="button" class="btn btn-secondary">+ Create Deck</button>
