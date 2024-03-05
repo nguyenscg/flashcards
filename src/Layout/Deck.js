@@ -37,6 +37,10 @@ function Deck() {
                 <div className="card-body">
                     <h2 className="card-title">{deck.name}</h2>
                     <p>{deck.description}</p>
+                    <button type="button" className="btn btn-secondary">Edit</button>
+                    <button type="button" className="btn btn-primary">Study</button>
+                    <button type="button" className="btn btn-primary">Add Cards</button>
+                    <button type="button" className="btn btn-danger">Delete</button>
                 </div>
             </div>
         </>
