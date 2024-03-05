@@ -45,7 +45,7 @@ function Home() {
 
     // studyDeck handler
     const handleStudyDeck = () => {
-        history.push("/decks/study");
+        history.push("/decks/:deckId/study");
     }
 
     // deleteDeck handler
