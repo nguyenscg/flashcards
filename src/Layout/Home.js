@@ -28,7 +28,7 @@ function Home() {
             }
         };
         fetchDecks();
-    }, []); // empty dependency array, run effect once when component renders
+    }, [decks]); // empty dependency array, run effect once when component renders
     
     let history = useHistory();
 
@@ -48,12 +48,15 @@ function Home() {
     }
 
     // deleteDeck handler
-    const handleDeleteDeck = () => {
+    const handleDeleteDeck = (deckId) => {
         if (window.confirm("Delete this card? You will not be able to recover it.")) {
-            history.go(0);
-            return deleteDeck({deck.id});
+            deleteDeck(deckId).then(() => {
+                // handle the successful deletion, update state to remove the deck from list
+            }).catch((error) => {
+                console.log("Failed to delete the deck:", error);
+            });
         }
-    }
+    };
 
 
     return (
