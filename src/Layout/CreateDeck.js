@@ -47,7 +47,7 @@ function CreateDeck() {
                 <textarea id="description" placeholder="Brief description of the deck" name="description" onChange={handleDescriptionChange} value={description} class="form-control" />
             </div>
             <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-            <button type="submit" className="btn btn-primary mx-1" onClick={handleSubmit}>Submit</button>
+            <button type="submit" className="btn btn-primary mx-1">Submit</button>
         </form>
         </>
     )
