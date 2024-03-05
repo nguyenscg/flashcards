@@ -19,9 +19,11 @@ function Home() {
 
     // useEffect hook to 'GET' a list of decks from api when the component renders. Display 'listDecks'
     useEffect(() => {
+        setDecks({});
+        const abortController = new AbortController(); // create a new 'AbortController'
         const fetchDecks = async () => {
             try {
-                const decksData = await listDecks();
+                const decksData = await listDecks(abortController.signal);
                 setDecks(decksData);
             } catch(error) {
                 console.log("Error fetching decks:", error)
@@ -48,9 +50,9 @@ function Home() {
     }
 
     // deleteDeck handler
-    const handleDeleteDeck = (deckId) => {
+    const handleDeleteDeck = (deck) => {
         if (window.confirm("Delete this card? You will not be able to recover it.")) {
-            deleteDeck(deckId).then(() => {
+            deleteDeck(deck).then(() => {
                 // handle the successful deletion, update state to remove the deck from list
             }).catch((error) => {
                 console.log("Failed to delete the deck:", error);
