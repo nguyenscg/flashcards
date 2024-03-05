@@ -6,12 +6,13 @@
 // if the user clicks cancel, the user is taken to the Deck screen
 
 import React, { useState, useEffect } from "react"; // import react, useState, useEffect
-import { readDeck } from "../utils/api/index"; // import readDeck function
+import { readDeck, updateDeck } from "../utils/api/index"; // import readDeck function
 import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams hook, useHistory hook;
 
 function EditDeck() {
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
+    const history = useHistory();
     
     useEffect(() => {
         const fetchDeck = async () => {
