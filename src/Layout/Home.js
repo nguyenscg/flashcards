@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; // import React
 import { listDecks, deleteDeck } from "../utils/api/index"; // import listDecks and deleteDeck API to be able to useEffect and fetch the api
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"; // import useHistory hook
 // Has the following features:
 // 1) A Create Deck button is shown, and clicking it brings the user to the Create Deck screen.
 // 2) Existing decks are each shown with the deck name, the number of cards, and a Study, View, and Delete button.
@@ -15,21 +15,21 @@ import { useHistory } from "react-router-dom";
 
 // The Home Screen is the first page the user sees. It is displayed at '/';
 function Home() {
-    const [decks, setDecks] = useState([]);
-    let history = useHistory();
+    const [decks, setDecks] = useState([]); // initialize decks state variable to be an empty array, use setDecks to update the state of decks
+    let history = useHistory(); // store useHistory() hook into variable 'history'
 
     // useEffect hook to 'GET' a list of decks from api when the component renders. Display 'listDecks'
     useEffect(() => {
         const fetchDecks = async () => {
             const abortController = new AbortController(); // create a new 'AbortController'
             try {
-                const decksData = await listDecks();
-                setDecks(decksData);
+                const decksData = await listDecks(); // store the imported listDecks function into decksData
+                setDecks(decksData); // update the state of setDecks
             } catch(error) {
                 console.log("Error fetching decks:", error)
             }
         };
-        fetchDecks();
+        fetchDecks(); // load decks data
     }, []); // empty dependency array, run effect once when component renders
 
     // createDeck handler
@@ -66,12 +66,18 @@ function Home() {
                 <div className="card border-light mb-3" key={deck.id}>
                     <div className="card-body">
                         <h3 className="card-title">{deck.name}</h3>
+                        <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
                     </div>
-                    <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
                     <div className="card-text">{deck.description}</div>
-                    <button type="button" className="btn btn-secondary" onClick={handleViewDeck}>View</button>
-                    <button type="button" className="btn btn-primary" onClick={handleStudyDeck}>Study</button>
-                    <button type="button" className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button type="button" className="btn btn-secondary" onClick={handleViewDeck}>View</button>
+                            <button type="button" className="btn btn-primary" onClick={handleStudyDeck}>Study</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Third group">
+                            <button type="button" className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
+                            </div>
+                    </div>
                 </div>
             ))}
         </div>
