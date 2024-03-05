@@ -7,8 +7,8 @@ function Study() {
     const [deck, setDeck] = useState({});
     const { deckId } = useParams(); // call the useParams hook to get the deckId from URL
     const [cards, setCards] = useState([]); // initalize cards to be an empty array. update the state with setCards
-    const [cardCount, setCardCount] = useState(1); // initalize cardCount to be 1 and update the state with setCardCount
-    const [frontCard, setfrontCard] = useState(true); // set the frontCard state to be true and update the state with setFrontCard
+    const [cardCount, setCardCount] = useState(0); // initalize cardCount to be 1 and update the state with setCardCount
+    const [frontCard, setFrontCard] = useState(true); // set the frontCard state to be true and update the state with setFrontCard
 
     // useEffect hook to get the readDeck function data to read an ID
     useEffect(() => {
@@ -32,13 +32,18 @@ function Study() {
         <button type="button" className="btn btn-primary" onClick={handleNext}>Next</button>
     }
 
-    // next button handler
-    const handleNext = () => {
-        if (cardCount < deck.cards.length) {
-            setCardCount(cardCount + 1);
-            setfrontCard(true);
+    // next button handler: two parameters 'index', 'total'
+    const handleNextCard = (index, total) => { // index - current position in card deck, total is total number
+        if (index >= total) {
+          const restart = window.confirm("Restart cards? Click 'cancel' to return to the home page.");
+          if (restart) {
+            cardCount = 1;
+            frontCard = true;
+          } else {
+            history.push("/");
+          }
         }
-    }
+      }
 
     // restart prompt
     // After final card in the deck has been shown, a message (restart prompt) is shown offering the user the opportunity to restart the deck
