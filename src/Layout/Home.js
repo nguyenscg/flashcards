@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"; // import React
-import { listDecks } from "../utils/api/index"; // import listDecks API to be able to useEffect and fetch the api
+import { listDecks, deleteDeck } from "../utils/api/index"; // import listDecks and deleteDeck API to be able to useEffect and fetch the api
 import { useHistory } from "react-router-dom";
 // Has the following features:
 // 1) A Create Deck button is shown, and clicking it brings the user to the Create Deck screen.
@@ -31,12 +31,34 @@ function Home() {
     }, []); // empty dependency array, run effect once when component renders
     
     let history = useHistory();
+
+    // createDeck handler
     const handleCreateDeck = () => {
         history.push("/decks/new");
     }
+    
+    // viewDeck handler
+    const handleViewDeck = () => {
+        history.push("/decks/:deckId");
+    }
+
+    // studyDeck handler
+    const handleStudyDeck = () => {
+        history.push("/decks/study");
+    }
+
+    // deleteDeck handler
+    const handleDeleteDeck = () => {
+        if (window.confirm("Delete this card? You will not be able to recover it.")) {
+            history.go(0);
+            return deleteDeck({deck.id});
+        }
+    }
+
+
     return (
         <div>
-            <button type="button" className="btn btn-secondary" onClick={handleCreateDeck}>+ Create Deck</button>
+            <button type="button" className="btn btn-secondary mb-2" onClick={handleCreateDeck}>+ Create Deck</button>
                 {decks.map((deck) => (
                 <div className="card border-light mb-3" key={deck.id}>
                     <div className="card-body">
@@ -44,9 +66,9 @@ function Home() {
                     </div>
                     <div className="card-subtitle mb-2 text-muted">{`${deck.cards.length} cards`}</div>
                     <div className="card-text">{deck.description}</div>
-                    <button type="button" className="btn btn-secondary">View</button>
-                    <button type="button" className="btn btn-primary">Study</button>
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <button type="button" className="btn btn-secondary" onClick={handleViewDeck}>View</button>
+                    <button type="button" className="btn btn-primary" onClick={handleStudyDeck}>Study</button>
+                    <button type="button" className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
                 </div>
             ))}
         </div>
