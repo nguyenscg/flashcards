@@ -8,11 +8,21 @@
 // After final card in the deck has been shown, a message (restart prompt) is shown offering the user the opportunity to restart the deck
 // if the user does not restart the deck, they should return to the home screen
 // Studying a deck with two or fewer cards should display "Not enough cards" message and a button to add cards to the deck
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { readDeck } from "../utils/api/index"; // import readDeck function
 import { Link } from "react-router-dom"; // import Link element
 
 function Study() {
+    const { deckId } = useParams();
+    const [deck, setDeck] = useState({});
+
+    useEffect(() => {
+        const fetchDeck = async () => {
+            const response = await readDeck(deckId);
+            setDeck(response);
+        }
+        fetchDeck();
+    }, []);
 
     return (
         <div>
