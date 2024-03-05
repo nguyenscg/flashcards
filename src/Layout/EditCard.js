@@ -11,6 +11,35 @@ import { useParams } from "react-router-dom"; // import useParams hook
 
 function EditCard() {
     const { deckId } = useParams();
+    const { cardId } = useParams();
+    const [deck, setDeck] = useState({});
+    const [card, setCard] = useState({});
+
+    useEffect(() => {
+        const fetchDeck = async () => {
+            try {
+                const deckData = await readDeck(deckId);
+                setDeck(deckData);
+            }
+            catch(error) {
+                console.log("Error loading deck: ", error);
+            }
+        }
+        fetchDeck();
+    }, [deckId]);
+
+    useEffect(() => {
+        const fetchCard = async () => {
+            try {
+                const cardData = await readCard(cardId);
+                setCard(cardData);
+            }
+            catch(error) {
+                console.log("Error loading cards: ", error);
+            }
+        }
+        fetchCard();
+    }, [readId]);
 
 
     return (
