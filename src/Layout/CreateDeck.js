@@ -8,19 +8,19 @@
 // IF user clicks cancel, the user is taken to the HOME screen
 import React, { useState } from "react"; // import react & useState hook
 
-const [name, setName] = useState("");
-const [description, setDescription] = useState("");
-
-const handleSubmit = (event) => {
-    event.preventDefault();
-    setName("");
-    setDescription("");
-}
-
-const handleNameChange = (event) => setName(event.target.value);
-const handleDescriptionChange = (event) => setDescription(event.target.value);
-
 function CreateDeck() {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setName("");
+        setDescription("");
+    }
+    
+    const handleNameChange = (event) => setName(event.target.value);
+    const handleDescriptionChange = (event) => setDescription(event.target.value);
+    
     return (
         <>
         <nav aria-label="breadcrumb">
