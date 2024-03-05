@@ -68,9 +68,8 @@ function EditCard() {
     setCard({
       ...card,
       [target.name]: target.value,
-    })
+    });
   }
-  
   const handleCancel = () => {
     history.push(`/decks/${deckId}`);
   }
@@ -109,7 +108,7 @@ function EditCard() {
                       id="back" 
                       className="form-control" 
                       value={card.back}
-                      onChange={onChange}
+                      onChange={handleChange}
                      />
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
