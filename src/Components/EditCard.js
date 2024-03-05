@@ -12,9 +12,23 @@ import { Link, useParams, useHistory } from "react-router-dom"; // import usePar
 function EditCard() {
     const { deckId } = useParams();
     const { cardId } = useParams();
-    const [deck, setDeck] = useState({});
-    const [card, setCard] = useState({});
     const history = useHistory();
+    
+    const initialDeckState = {
+      id: "",
+      name: "",
+      description: "",
+    };
+    
+    const initialCardState = {
+      id: "",
+      front: "",
+      back: "",
+      deckId: "",
+    }
+    
+    const [deck, setDeck] = useState(initialDeckState);
+    const [card, setCard] = useState(initialCardState);
 
     useEffect(() => {
         const fetchDeck = async () => {
@@ -50,6 +64,13 @@ function EditCard() {
         fetchCard();
     }, [cardId]);
   
+  const handleChange = ({ target }) => {
+    setCard({
+      ...card,
+      [target.name]: target.value,
+    })
+  }
+  
   const handleCancel = () => {
     history.push("/decks/:deckId");
   }
@@ -67,7 +88,7 @@ function EditCard() {
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><Link to={`/decks/:deckId`}>Deck {deck.name}</Link></li>
+                    <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>Deck {deck.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Edit Card Num</li>
                 </ol>
             </nav>
@@ -75,14 +96,24 @@ function EditCard() {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="front">Front</label>
-                    <textarea id="front" className="form-control" value={card.front}/>
+                    <textarea 
+                      id="front" 
+                      className="form-control" 
+                      value={card.front}
+                      onChange={handleChange}
+                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="back">Back</label>
-                    <textarea id="back" className="form-control" value={card.back}/>
+                    <textarea 
+                      id="back" 
+                      className="form-control" 
+                      value={card.back}
+                      onChange={onChange}
+                     />
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-                <button type="button" className="btn btn-primary mx-1">Submit</button>
+                <button type="submit" className="btn btn-primary mx-1">Submit</button>
             </form>
         </div>
     );
