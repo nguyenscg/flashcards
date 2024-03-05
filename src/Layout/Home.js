@@ -28,7 +28,7 @@ function Home() {
             }
         };
         fetchDecks();
-    }, [decks]); // empty dependency array, run effect once when component renders
+    }, []); // empty dependency array, run effect once when component renders
     
     let history = useHistory();
 
