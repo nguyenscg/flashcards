@@ -11,6 +11,10 @@ function AddCard() {
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
     const history = useHistory();
+    const initialState = {
+        front: "",
+        back: "",
+    };
     
     useEffect(() => {
         const fetchDeck = async () => {
@@ -24,6 +28,10 @@ function AddCard() {
         }
         fetchDeck();
     }, []);
+
+    const handleChange = () => {
+        
+    }
 
     const handleSave = () => {
 
