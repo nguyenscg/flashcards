@@ -7,9 +7,10 @@
 
 import React, { useState, useEffect } from "react"; // import react, useState, useEffect
 import { readDeck } from "../utils/api/index"; // import readDeck function
+import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams hook, useHistory hook;
 
 function EditDeck() {
-
+    const { deckId } = useParams();
 }
 
 export default EditDeck;
