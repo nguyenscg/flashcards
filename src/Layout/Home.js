@@ -23,12 +23,12 @@ function Home() {
             try {
                 const decksData = await listDecks();
                 setDecks(decksData);
-            } catch {
+            } catch(error) {
                 console.log("Error fetching decks:", error)
             }
         };
         fetchDecks();
-    }, []); // run effect once when component renders
+    }, []); // empty dependency array, run effect once when component renders
     
     let history = useHistory();
     const handleCreateDeck = () => {
@@ -37,7 +37,6 @@ function Home() {
     return (
         <>
             <button type="button" class="btn btn-secondary" onClick={handleCreateDeck}>+ Create Deck</button>
-            <p>This is the Home Screen.</p>
             {decks.map((deck) => (
                 <div key={deck.id}>
                     <h3>{deck.name}</h3>
