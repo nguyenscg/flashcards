@@ -72,7 +72,7 @@ function EditCard() {
   }
   
   const handleCancel = () => {
-    history.push("/decks/:deckId");
+    history.push(`/decks/${deckId}`);
   }
   
   async function handleSubmit(event) {
