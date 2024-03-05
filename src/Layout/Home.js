@@ -19,11 +19,10 @@ function Home() {
 
     // useEffect hook to 'GET' a list of decks from api when the component renders. Display 'listDecks'
     useEffect(() => {
-        setDecks({});
         const abortController = new AbortController(); // create a new 'AbortController'
         const fetchDecks = async () => {
             try {
-                const decksData = await listDecks(abortController.signal);
+                const decksData = await listDecks();
                 setDecks(decksData);
             } catch(error) {
                 console.log("Error fetching decks:", error)
