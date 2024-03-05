@@ -1,9 +1,4 @@
 // path: /decks/:deckId/edit
-// breadcrumb nav
-// breadcrumb nav / home / deck name / Edit Deck
-// displays same form as Create Deck screen, except it is prefilled with infor for the existing deck
-// user can edit and update the form
-// if the user clicks cancel, the user is taken to the Deck screen
 
 import React, { useState, useEffect } from "react"; // import react, useState, useEffect
 import { readDeck, updateDeck } from "../utils/api/index"; // import readDeck function
@@ -11,8 +6,13 @@ import { Link, useParams, useHistory } from "react-router-dom"; // import Link e
 
 function EditDeck() {
     const { deckId } = useParams();
-    const [deck, setDeck] = useState({});
     const history = useHistory();
+    const initialState = {
+        id: "",
+        name: "",
+        description: "",
+    }
+    const [deck, setDeck] = useState(initialState);
     
     useEffect(() => {
         const fetchDeck = async () => {
@@ -27,6 +27,26 @@ function EditDeck() {
         fetchDeck();
     }, [deckId]); // reruns effect when deckId changes
 
+    // change handler
+    const handleChange = ({ target }) => {
+        setDeck({
+            ...deck,
+            [target.name]: target.value,
+        });
+    }
+
+    // submit handler
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = updateDeck({...deck});
+        history.push(`/decks/${deckId}`);
+        return data;
+    }
+
+    const handleCancel = () => {
+        history.push(`/decks/:deckId`);
+      }
+
     return (
     <div>
         <nav aria-label="breadcrumb">
@@ -40,11 +60,23 @@ function EditDeck() {
         <form>
             <div className="form-group">
                 <label for="name">Name</label>
-                <textarea id="name" className="form-control" placeholder="Prefilled Deck"></textarea>
+                <textarea 
+                    id="name" 
+                    className="form-control" 
+                    placeholder="Prefilled Deck"
+                    value={deck.name}
+                    onChange={handleChange}>
+                </textarea>
             </div>
             <div className="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" className="form-control" placeholder="Prefilled Description"></textarea>
+                <textarea 
+                    id="description" 
+                    className="form-control" 
+                    placeholder="Prefilled Description"
+                    value={deck.description}
+                    onChange={handleChange}>
+                </textarea>
             </div>
             <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
             <button type="button" className="btn btn-primary mx-1">Submit</button>
