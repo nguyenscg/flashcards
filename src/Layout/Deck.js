@@ -1,6 +1,5 @@
 // The Deck screen displays all of the information about a deck.
-// Features:
-// 1) The path to this screen should include the deckId (i.e., /decks/:deckId)
+// PATH: /decks/:deckId
 // 2) You must use the readDeck() function from src/utils/api/index.js to load the existing deck.
 // 3) There is a breadcrumb navigation bar with a link to home / followed by the name of the deck (e.g., Home/React Router).
 // 4) The screen includes the deck name (e.g., "React Router") and deck description (e.g., "React Router is a collection of navigational components that compose declaratively in your application").
@@ -10,13 +9,13 @@ import { useParams, Link } from "react-router-dom"; // import useParams hook;
 import { readDeck } from "../utils/api/index"; // import readDeck function from api;
 
 function Deck() {
-    const params = useParams();
+    const { deckId } = useParams(); // useParams hook function to get deckId from URL
     const [deck, setDeck] = useState({});
 
     useEffect(() => {
         const fetchDeck = async () => {
             try {
-                const decksData = await readDeck();
+                const decksData = await readDeck(deckId);
                 setDeck(decksData);
             }
             catch(error) {
@@ -24,7 +23,7 @@ function Deck() {
             }
         };
         fetchDeck();
-    }, []); // empty dependency array, run effect once
+    }, [deckId]); // empty dependency array, rerun the effect if the deck ID changes
 
     return (
         <>
