@@ -35,10 +35,9 @@ function Home() {
         history.push("/decks/new");
     }
     return (
-        <>
+        <div>
             <button type="button" className="btn btn-secondary mb-2" onClick={handleCreateDeck}>+ Create Deck</button>
-            
-            {decks.map((deck) => (
+                {decks.map((deck) => (
                 <div className="card border-light mb-3" style={{ maxWidth: '18rem' }} key={deck.id}>
                     <div className="card-body">
                         <h5 className="card-title">{deck.name}</h5>
@@ -50,7 +49,7 @@ function Home() {
                     <button type="button" className="btn btn-danger">Delete</button>
                 </div>
             ))}
-        </>
+        </div>
     );
 }
 
