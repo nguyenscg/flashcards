@@ -30,28 +30,16 @@ function CreateDeck() {
                 <li className="breadcrumb-item active" aria-current="page">Create Deck</li>
             </ol>
         </nav>
+        <h1>Create Deck</h1>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="name">
-                Name
-                <input
-                    id="name"
-                    type="text"
-                    placeholder="Deck Name"
-                    name="name"
-                    onChange={handleNameChange}
-                    value={name}
-                />
-            </label>
-            <label htmlFor="description">
-                Description
-                <textarea
-                    id="description"
-                    placeholder="Brief description of the deck"
-                    name="description"
-                    onChange={handleDescriptionChange}
-                    value={description}
-                />
-            </label>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Deck Name" name="name" onChange={handleNameChange} value={name} class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Brief description of the deck" name="description" onChange={handleDescriptionChange} value={description} class="form-control" />
+            </div>
             <button type="button" className="btn btn-secondary"><Link to="/">Cancel</Link></button>
             <button type="submit" className="btn btn-primary"><Link to="/decks/:deckId">Submit</Link></button>
         </form>
