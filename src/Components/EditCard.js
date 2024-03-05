@@ -5,24 +5,29 @@
 // displays the same from Add Card screen, except it is prefilled with information for existing card. It can be edited and updated
 // if user clicks on either save or cancel, the user is taken to the deck screen
 
-import React from "react";
-import { readDeck, readCard } from "../utils/api/index"; // import readDeck function and readCard function
-import { useParams } from "react-router-dom"; // import useParams hook
+import React, { useState, useEffect } from "react";
+import { readDeck, readCard, updateCard } from "../utils/api/index"; // import readDeck function and readCard function
+import { Link, useParams, useHistory } from "react-router-dom"; // import useParams hook
 
 function EditCard() {
     const { deckId } = useParams();
     const { cardId } = useParams();
     const [deck, setDeck] = useState({});
     const [card, setCard] = useState({});
+    const history = useHistory();
 
     useEffect(() => {
         const fetchDeck = async () => {
+          const abortController = new AbortController();
             try {
-                const deckData = await readDeck(deckId);
+                const deckData = await readDeck(deckId, abortController.signal);
                 setDeck(deckData);
             }
             catch(error) {
                 console.log("Error loading deck: ", error);
+            }
+            return () => {
+                abortController.abort();
             }
         }
         fetchDeck();
@@ -30,16 +35,31 @@ function EditCard() {
 
     useEffect(() => {
         const fetchCard = async () => {
+          const abortController = new AbortController();
             try {
-                const cardData = await readCard(cardId);
+                const cardData = await readCard(cardId, abortController.signal);
                 setCard(cardData);
             }
             catch(error) {
                 console.log("Error loading cards: ", error);
             }
+            return () => {
+                abortController.abort();
+            }
         }
         fetchCard();
-    }, [readId]);
+    }, [cardId]);
+  
+  const handleCancel = () => {
+    history.push("/decks/:deckId");
+  }
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const abortController = new AbortController();
+    const response = await updateCard({ ...card }, abortController.signal);
+    history.push(`/decks/${deckId}`);
+  }
 
 
     return (
@@ -52,14 +72,14 @@ function EditCard() {
                 </ol>
             </nav>
             <h2>Edit Card</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label for="front">Front</label>
-                    <textarea id="front" className="form-control" placeholder="Front side of card"></textarea>
+                    <label htmlFor="front">Front</label>
+                    <textarea id="front" className="form-control" value={card.front}/>
                 </div>
                 <div className="form-group">
-                    <label for="back">Back</label>
-                    <textarea id="back" className="form-control" placeholder="Back side of card"></textarea>
+                    <label htmlFor="back">Back</label>
+                    <textarea id="back" className="form-control" value={card.back}/>
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
                 <button type="button" className="btn btn-primary mx-1">Submit</button>
