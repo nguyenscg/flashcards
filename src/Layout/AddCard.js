@@ -1,8 +1,5 @@
 // ADD CARD screen allows the user to add a new card to an existing deck
 // path should be: /decks/:deckId/cards/new
-// breadcrumb nav with home / deck name / add card
-// screen displays: deck name: Add Card deck title
-// form is shown with the "front" and "back" fields for a new card. both fields use a <textarea> tag that can accommodate multiple lines of text
 // if the user clicks save, new card is created and associated with relevant deck. then the form is cleared and the process for adding a card is restarted
 // if user clicks done, the user is taken to the deck screen
 import React, { useState, useEffect } from "react"; // import React, useState hook, and useEffect hook
@@ -13,6 +10,7 @@ import { Link, useParams, useHistory } from "react-router-dom"; // import Link e
 function AddCard() {
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
+    const history = useHistory();
     
     useEffect(() => {
         const fetchDeck = async () => {
@@ -27,12 +25,20 @@ function AddCard() {
         fetchDeck();
     }, []);
 
+    const handleSave = () => {
+
+    }
+
+    const handleDone = () => {
+        history.push("/decks/:deckId");
+    }
+
     return (
         <div>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><a href="#">{deck.name}</a></li>
+                    <li className="breadcrumb-item"><Link to={`/decks/:deckId`}>{deck.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add Card</li>
                 </ol>
             </nav>
@@ -46,8 +52,8 @@ function AddCard() {
                     <label for="back">Back</label>
                     <textarea id="back" className="form-control" placeholder="Back side of card"></textarea>
                 </div>
-                <button type="button" className="btn btn-secondary">Done</button>
-                <button type="button" className="btn btn-primary">Save</button>
+                <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
+                <button type="button" className="btn btn-primary mx-1">Save</button>
             </form>
         </div>
     );
