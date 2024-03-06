@@ -49,14 +49,14 @@ function Deck() {
     }
     const handleDeleteDeck = (deckId) => {
         if (window.confirm("Delete this deck? You will not be able to recover it.")) {
-          // Code to update the state and remove the card from the list
-          setDeck(prevDeck => prevDeck.filter(deck => deck.id !== deckId));
+          // update state and remove the deck
+          setDeck({});
         }
       }
 
     const handleDeleteCard = (cardId) => {
         if (window.confirm("Delete this card? You will not be able to recover it.")) {
-          // Code to update the state and remove the card from the list
+          // update state and remove the card from the list
           setCards(prevCards => prevCards.filter(card => card.id !== cardId));
         }
       }
