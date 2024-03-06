@@ -44,19 +44,16 @@ function Deck() {
         history.push(`/decks/${deckId}/cards/new`)
     }
 
-    const handleDelete = (deck) => {
-        if (window.confirm("Delete this card? You will not be able to recover it.")) {
-
-        }
-    }
-
     const handleEditCard = (card) => {
         history.push(`/decks/${deckId}/cards/${card.id}/edit`);
     }
 
-    const handleDeleteCard = () => {
-
-    }
+    const handleDelete = (cardId) => {
+        if (window.confirm("Delete this card? You will not be able to recover it.")) {
+          // Code to update the state and remove the card from the list
+          setCards(prevCards => prevCards.filter(card => card.id !== cardId));
+        }
+      }
 
     return (
         <div>
@@ -92,7 +89,7 @@ function Deck() {
             </div>
             <div className="btn group">
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleEditCard}>Edit</button>
-                <button type="button" className="btn btn-danger mx-1" onClick={handleDeleteCard}>handleDelete</button>
+                <button type="button" className="btn btn-danger mx-1" onClick={handleDelete}>Delete</button>
             </div>
         </div>
     </div>
