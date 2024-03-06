@@ -62,11 +62,11 @@ function AddCard() {
             <form>
                 <div className="form-group">
                     <label for="front">Front</label>
-                    <textarea id="front" className="form-control" type="text" placeholder="Front side of card" value={formData.front} onChange={handleChange}/>
+                    <textarea id="front" name="front" className="form-control" placeholder="Front side of card" onChange={handleChange}/>
                 </div>
                 <div className="form-group">
                     <label for="back">Back</label>
-                    <textarea id="back" className="form-control" type="text" placeholder="Back side of card" value={formData.back} onChange={handleChange}/>
+                    <textarea id="back" name="back" className="form-control" type="text" placeholder="Back side of card" onChange={handleChange}/>
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
                 <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
