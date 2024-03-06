@@ -5,13 +5,14 @@
 // 4) The screen includes the deck name (e.g., "React Router") and deck description (e.g., "React Router is a collection of navigational components that compose declaratively in your application").
 // 5) The screen includes Edit, Study, Add Cards, and Delete buttons. Each button takes the user to a different destination, as follows:
 import React, { useState, useEffect } from "react"; // import react
-import { useParams, Link } from "react-router-dom"; // import useParams hook;
+import { useParams, Link, useHistory } from "react-router-dom"; // import useParams hook;
 import { readDeck } from "../utils/api/index"; // import readDeck function from api;
 
 function Deck() {
     const { deckId } = useParams(); // useParams hook function to get deckId from URL
     const [deck, setDeck] = useState({});
     const [cards, setCards] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const fetchDeck = async () => {
@@ -30,6 +31,22 @@ function Deck() {
         };
         fetchDeck();
     }, [deckId]); // empty dependency array, rerun the effect if the deck ID changes
+
+    const handleEdit = () => {
+
+    }
+
+    const handleStudy = () => {
+
+    }
+
+    const handleAdd = () => {
+
+    }
+
+    const handleDelete = () => {
+        
+    }
 
     return (
         <div>
