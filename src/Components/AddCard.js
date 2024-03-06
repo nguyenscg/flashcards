@@ -11,10 +11,14 @@ function AddCard() {
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
     const history = useHistory();
+
+    // clear state
     const initialState = {
         front: "",
         back: "",
     };
+
+    const [formData, setFormData] = useState(initialState)
     
     useEffect(() => {
         const fetchDeck = async () => {
@@ -29,16 +33,20 @@ function AddCard() {
         fetchDeck();
     }, []);
 
-    const handleChange = () => {
-        
+    const handleChange = ({ target }) => {
+        setFormData({
+            ...formData,
+            [target.name]: target. value,
+        });
     }
 
     const handleSave = () => {
-
+        createCard(deckId, formData);
+        setFormData(initialState); // clear form data
     }
 
     const handleDone = () => {
-        history.push("/decks/:deckId");
+        history.push(`/decks/${deckId}`);
     }
 
     return (
@@ -46,7 +54,7 @@ function AddCard() {
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><Link to={`/decks/:deckId`}>{deck.name}</Link></li>
+                    <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add Card</li>
                 </ol>
             </nav>
@@ -54,14 +62,14 @@ function AddCard() {
             <form>
                 <div className="form-group">
                     <label for="front">Front</label>
-                    <textarea id="front" className="form-control" placeholder="Front side of card"></textarea>
+                    <textarea id="front" className="form-control" placeholder="Front side of card" value={formData.front} onChange={handleChange}/>
                 </div>
                 <div className="form-group">
                     <label for="back">Back</label>
-                    <textarea id="back" className="form-control" placeholder="Back side of card"></textarea>
+                    <textarea id="back" className="form-control" placeholder="Back side of card" value={formData.back} onChange={handleChange}/>
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
-                <button type="button" className="btn btn-primary mx-1">Save</button>
+                <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
             </form>
         </div>
     );
