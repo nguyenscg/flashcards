@@ -33,19 +33,21 @@ function Deck() {
     }, [deckId]); // empty dependency array, rerun the effect if the deck ID changes
 
     const handleEdit = () => {
-
+        history.push(`/decks/${deckId}/edit`)
     }
 
     const handleStudy = () => {
-
+        history.push(`/decks/${deckId}/study`)
     }
 
     const handleAdd = () => {
-
+        history.push(`/decks/${deckId}/cards/new`)
     }
 
-    const handleDelete = () => {
-        
+    const handleDelete = (deck) => {
+        if (window.confirm("Delete this card? You will not be able to recover it.")) {
+
+        }
     }
 
     return (
@@ -62,12 +64,12 @@ function Deck() {
                     <p>{deck.description}</p>
                     <div className="btn-toolbar">
                         <div className="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" className="btn btn-secondary">Edit</button>
-                            <button type="button" className="btn btn-primary">Study</button>
-                            <button type="button" className="btn btn-primary">Add Cards</button>
+                            <button type="button" className="btn btn-secondary" onClick={handleEdit}>Edit</button>
+                            <button type="button" className="btn btn-primary" onClick={handleStudy}>Study</button>
+                            <button type="button" className="btn btn-primary" onClick={handleAdd}>Add Cards</button>
                         </div>
                         <div className="btn-group" role="group" aria-label="Third group">
-                            <button type="button" className="btn btn-danger">Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </div>
