@@ -48,7 +48,7 @@ function Deck() {
         history.push(`/decks/${deckId}/cards/${card.id}/edit`);
     }
     const handleDeleteDeck = (deckId) => {
-        if (window.confirm("Delete this card? You will not be able to recover it.")) {
+        if (window.confirm("Delete this deck? You will not be able to recover it.")) {
           // Code to update the state and remove the card from the list
           setDeck(prevDeck => prevDeck.filter(deck => deck.id !== deckId));
         }
