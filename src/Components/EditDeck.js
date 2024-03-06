@@ -61,19 +61,21 @@ function EditDeck() {
             <div className="form-group">
                 <label for="name">Name</label>
                 <input 
-                    id="name" 
-                    className="form-control" 
-                    placeholder="Prefilled Deck"
+                    id="name"
+                    name="name" 
+                    className="form-control"
+                    type="text" 
                     value={deck.name}
                     onChange={handleChange} />
             </div>
             <div className="form-group">
                 <label for="description">Description</label>
                 <textarea 
-                    id="description" 
+                    id="description"
+                    name="description" 
                     className="form-control" 
-                    placeholder="Prefilled Description"
                     value={deck.description}
+                    type="text"
                     onChange={handleChange}/>
             </div>
             <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
