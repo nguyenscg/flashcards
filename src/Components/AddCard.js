@@ -3,7 +3,7 @@
 // if the user clicks save, new card is created and associated with relevant deck. then the form is cleared and the process for adding a card is restarted
 // if user clicks done, the user is taken to the deck screen
 import React, { useState, useEffect } from "react"; // import React, useState hook, and useEffect hook
-import { readDeck } from "../utils/api/index"; // import readDeck function
+import { readDeck, createCard } from "../utils/api/index"; // import readDeck function
 import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams hook, useHistory hook
 
 
