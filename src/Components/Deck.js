@@ -50,6 +50,14 @@ function Deck() {
         }
     }
 
+    const handleEditCard = (card) => {
+        history.push(`/decks/${deckId}/cards/${card.id}/edit`);
+    }
+
+    const handleDeleteCard = () => {
+
+    }
+
     return (
         <div>
             <nav aria-label="breadcrumb">
@@ -81,6 +89,10 @@ function Deck() {
             <div className="card-title">
                 <div className="front">{card.front}</div>
                 <div className="back">{card.back}</div>
+            </div>
+            <div className="btn group">
+                <button type="button" className="btn btn-secondary mx-1" onClick={handleEditCard}>Edit</button>
+                <button type="button" className="btn btn-danger mx-1" onClick={handleDeleteCard}>handleDelete</button>
             </div>
         </div>
     </div>
