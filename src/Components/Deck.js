@@ -15,13 +15,17 @@ function Deck() {
 
     useEffect(() => {
         const fetchDeck = async () => {
+            const abortController = new AbortController();
             try {
-                const decksData = await readDeck(deckId);
+                const decksData = await readDeck(deckId, abortController.signal);
                 setDeck(decksData);
                 setCards(decksData.cards);
             }
             catch(error) {
                 console.log("Error fetching decks:", error);
+            }
+            return () => {
+                abortController.abort();
             }
         };
         fetchDeck();
