@@ -28,7 +28,7 @@ function Study() {
 
     // next button handler: two parameters 'index', 'total'
     const handleNextCard = (index, total) => { // index - current position in card deck, total is total number
-        if (index >= total) { // if index is less than total number of cards, means more cards to show
+        if (index < total) { // if index is less than total number of cards, means more cards to show
           setCardCount(cardCount + 1); // increment card count to show next card
           setFrontCard(true); // show front card
         } else { // if current index is not less than total, means we've reached the end of the deck
