@@ -7,11 +7,10 @@
 
 import React, { useState, useEffect } from "react";
 import { readDeck, readCard, updateCard } from "../utils/api/index"; // import readDeck function and readCard function
-import { Link, useParams, useHistory } from "react-router-dom"; // import useParams hook
+import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams, and useHistory hooks
 
 function EditCard() {
-    const { deckId } = useParams();
-    const { cardId } = useParams();
+    const { deckId, cardId } = useParams();
     const history = useHistory();
     
     const initialDeckState = {
@@ -74,13 +73,15 @@ function EditCard() {
     history.push(`/decks/${deckId}`);
   }
   
-  async function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const abortController = new AbortController();
-    const response = await updateCard({ ...card }, abortController.signal);
-    history.push(`/decks/${deckId}`);
-  }
-
+    try {
+        await updateCard(card);
+        history.push(`/decks/${deckId}`);
+    } catch (error) {
+        console.log("Error updating card: ", error);
+    }
+}
 
     return (
         <div>
@@ -96,7 +97,8 @@ function EditCard() {
                 <div className="form-group">
                     <label htmlFor="front">Front</label>
                     <textarea 
-                      id="front" 
+                      id="front"
+                      name="front" 
                       className="form-control" 
                       value={card.front}
                       onChange={handleChange}
@@ -105,7 +107,8 @@ function EditCard() {
                 <div className="form-group">
                     <label htmlFor="back">Back</label>
                     <textarea 
-                      id="back" 
+                      id="back"
+                      name="back" 
                       className="form-control" 
                       value={card.back}
                       onChange={handleChange}
