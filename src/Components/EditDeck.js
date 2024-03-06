@@ -44,8 +44,8 @@ function EditDeck() {
     }
 
     const handleCancel = () => {
-        history.push(`/decks/:deckId`);
-      }
+        history.push(`/decks/${deckId}`);
+    }
 
     return (
     <div>
