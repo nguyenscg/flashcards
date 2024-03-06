@@ -37,13 +37,13 @@ function Home() {
     }
     
     // viewDeck handler
-    const handleViewDeck = () => {
-        history.push("/decks/:deckId");
+    const handleViewDeck = (deckId) => {
+        history.push(`/decks/${deckId}`);
     }
 
     // studyDeck handler
-    const handleStudyDeck = () => {
-        history.push("/decks/:deckId/study");
+    const handleStudyDeck = (deckId) => {
+        history.push(`/decks/${deckId}/study`);
     }
 
     // deleteDeck handler
@@ -70,8 +70,8 @@ function Home() {
                     <div className="card-text">{deck.description}</div>
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button type="button" className="btn btn-secondary" onClick={handleViewDeck}>View</button>
-                            <button type="button" className="btn btn-primary" onClick={handleStudyDeck}>Study</button>
+                        <button type="button" className="btn btn-secondary" onClick={() => handleViewDeck(deck.id)}>View</button>
+                        <button type="button" className="btn btn-primary" onClick={() => handleStudyDeck(deck.id)}>Study</button>
                         </div>
                         <div class="btn-group" role="group" aria-label="Third group">
                             <button type="button" className="btn btn-danger" onClick={handleDeleteDeck}>Delete</button>
