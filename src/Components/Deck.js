@@ -47,8 +47,14 @@ function Deck() {
     const handleEditCard = (card) => {
         history.push(`/decks/${deckId}/cards/${card.id}/edit`);
     }
+    const handleDeleteDeck = (deckId) => {
+        if (window.confirm("Delete this card? You will not be able to recover it.")) {
+          // Code to update the state and remove the card from the list
+          setDeck(prevDeck => prevDeck.filter(deck => deck.id !== deckId));
+        }
+      }
 
-    const handleDelete = (cardId) => {
+    const handleDeleteCard = (cardId) => {
         if (window.confirm("Delete this card? You will not be able to recover it.")) {
           // Code to update the state and remove the card from the list
           setCards(prevCards => prevCards.filter(card => card.id !== cardId));
@@ -74,7 +80,7 @@ function Deck() {
                             <button type="button" className="btn btn-primary" onClick={handleAdd}>Add Cards</button>
                         </div>
                         <div className="btn-group" role="group" aria-label="Third group">
-                            <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => handleDeleteDeck(deck.id)}>Delete</button>
                         </div>
                     </div>
                 </div>
@@ -89,7 +95,7 @@ function Deck() {
             </div>
             <div className="btn group">
                 <button type="button" className="btn btn-secondary mx-1" onClick={() => handleEditCard(card)}>Edit</button>
-                <button type="button" className="btn btn-danger mx-1" onClick={() => handleDelete(card.id)}>Delete</button>
+                <button type="button" className="btn btn-danger mx-1" onClick={() => handleDeleteCard(card.id)}>Delete</button>
             </div>
         </div>
     </div>
