@@ -79,7 +79,7 @@ function EditDeck() {
                     onChange={handleChange}/>
             </div>
             <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-            <button type="button" className="btn btn-primary mx-1">Submit</button>
+            <button type="submit" className="btn btn-primary mx-1">Submit</button>
         </form>
     </div>
     );
