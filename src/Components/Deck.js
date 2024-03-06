@@ -88,8 +88,8 @@ function Deck() {
                 <div className="back">{card.back}</div>
             </div>
             <div className="btn group">
-                <button type="button" className="btn btn-secondary mx-1" onClick={handleEditCard}>Edit</button>
-                <button type="button" className="btn btn-danger mx-1" onClick={handleDelete}>Delete</button>
+                <button type="button" className="btn btn-secondary mx-1" onClick={() => handleEditCard(card)}>Edit</button>
+                <button type="button" className="btn btn-danger mx-1" onClick={() => handleDeleteCard(card.id)}>Delete</button>
             </div>
         </div>
     </div>
