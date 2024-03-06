@@ -60,13 +60,12 @@ function EditDeck() {
         <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label for="name">Name</label>
-                <textarea 
+                <input 
                     id="name" 
                     className="form-control" 
                     placeholder="Prefilled Deck"
                     value={deck.name}
-                    onChange={handleChange}>
-                </textarea>
+                    onChange={handleChange} />
             </div>
             <div className="form-group">
                 <label for="description">Description</label>
