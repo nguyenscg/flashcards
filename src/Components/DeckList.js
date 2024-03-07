@@ -1,20 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { deleteDeck } from "../utils/api/index";
 
 function DeckList({ decks }) {
+    const history = useHistory();
+    const { deckId, cardId } = useParams();
 
-  const handleDelete = async ({ target }) => {
-    const confirmMessage = "Delete this deck?\n\nYou will not be able to recover it.";
-    const confirm = window.confirm(confirmMessage);
+  const handleDelete = async () => {
+    const confirmMessage = window.confirm("Delete this Deck? You will not be able to recover it.")
 
-    if (confirm) {
-      const id = target.parentNode.value;
-      await deleteDeck(id);
-      window.location.reload();
+    if(confirmMessage) {
+        deleteDeck(deckId)
+        .then((history.push(`/`)))
+        .then(window.location.reload()) //this reloads the page to show that the deck has been deleted.
 
+        }
     }
-  };
 
   return (
     <div>
