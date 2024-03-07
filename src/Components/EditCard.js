@@ -85,46 +85,37 @@ function EditCard() {
 }
 
     return (
-        <div>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>Deck {deck.name}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Edit Card {cardId}</li>
-                </ol>
-            </nav>
-            <h2>Edit Card</h2>
-            <FormCard
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>Deck {deck.name}</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Card {cardId}</li>
+                    </ol>
+                </nav>
+                <h2>Edit Card</h2>
+                <FormCard
             formData={card}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
-            />
-            {/* <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="front">Front</label>
-                    <textarea 
-                      id="front"
-                      name="front" 
-                      className="form-control" 
-                      value={card.front}
-                      onChange={handleChange}
-                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="back">Back</label>
-                    <textarea 
-                      id="back"
-                      name="back" 
-                      className="form-control" 
-                      value={card.back}
-                      onChange={handleChange}
-                     />
-                </div>
-                <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-                <button type="submit" className="btn btn-primary mx-1">Submit</button>
-            </form> */}
+        />
+            <div>
+            <button
+            className="btn btn-secondary m-2"
+            onClick={() => history.push(`/decks/${deckId}`)}
+            >
+            Cancel
+            </button>
+            <button
+            type="submit"
+            className="btn btn-primary m-2"
+            onClick={handleSubmit}
+            >
+            Save
+            </button>
         </div>
-    );
+            </div>
+        );
 }
 
 export default EditCard;
