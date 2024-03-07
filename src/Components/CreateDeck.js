@@ -7,12 +7,23 @@
 // IF user clicks submit, the user is taken to the DECK screen
 // IF user clicks cancel, the user is taken to the HOME screen
 import React, { useState } from "react"; // import react & useState hook
-import { Link, useHistory } from "react-router-dom"; // import Link element to navigate to another page and import useHistory hook
+import { Link, useHistory, useParams } from "react-router-dom"; // import Link element to navigate to another page and import useHistory hook
+import { readDeck } from "../utils/api/index";
 
 function CreateDeck() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const history = useHistory();
+    const { deckId } = useParams();
+    const [id, setId] = useState(null);
+
+    useEffect(() => {
+        const fetchId = () => {
+            const response = readDeck(deckId);
+            setId(response);
+        }
+        fetchId();
+    }, []);
     
     const handleSubmit = (event) => {
         event.preventDefault(); // prevent default behavior of form submissions

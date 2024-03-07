@@ -61,10 +61,10 @@ function AddCard() {
             </nav>
             <h2>{deck.name}: Add Card</h2>
             <FormCard
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSave}
-                isEditing={false}
+                 deck={deck}
+                 formData={formData}
+                 handleChange={handleChange}
+                 handleSubmit={handleSave}
             />
             {/* <form>
                 <div className="form-group">
