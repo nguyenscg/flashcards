@@ -1,7 +1,32 @@
 import React from "react";
 
-function FormCard() {
-
+function FormCard({ card, handleChange, handleSubmit, handleCancel }) {
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="front">Front</label>
+                <textarea 
+                    id="front"
+                    name="front" 
+                    className="form-control" 
+                    value={card.front}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="back">Back</label>
+                <textarea 
+                    id="back"
+                    name="back" 
+                    className="form-control" 
+                    value={card.back}
+                    onChange={handleChange}
+                />
+            </div>
+            <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="btn btn-primary mx-1">Submit</button>
+        </form>
+    );
 }
 
 export default FormCard;
