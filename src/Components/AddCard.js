@@ -64,7 +64,7 @@ function AddCard() {
                 formData={formData}
                 handleChange={handleChange}
                 handleSubmit={handleSave}
-                buttonText="Save"
+                isEditing={false}
             />
             {/* <form>
                 <div className="form-group">

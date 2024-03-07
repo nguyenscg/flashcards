@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { readCard, createCard, updateCard } from "../utils/api"; // import readCard, createCard, and updateCard functions
 import { useHistory, useParams } from "react-router-dom";
 
-function FormCard({ card, handleChange, handleSubmit, handleCancel }) {
+function FormCard({ card, handleChange, handleSubmit, handleCancel, isEditing }) {
     const { deckId, cardId } = useParams();
     const history = useHistory();
     const [edit, setEdit] = useState(null);
@@ -30,7 +30,7 @@ function FormCard({ card, handleChange, handleSubmit, handleCancel }) {
                 />
             </div>
             <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-            <button type="submit" className="btn btn-primary mx-1">Submit</button>
+            <button type="submit" className="btn btn-primary mx-1">{isEditing ? "Update" : "Save"}</button>
         </form>
     );
 }

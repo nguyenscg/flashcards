@@ -99,6 +99,7 @@ function EditCard() {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 handleCancel={handleCancel}
+                isEditing={true}
                 />
             {/* <form onSubmit={handleSubmit}>
                 <div className="form-group">
