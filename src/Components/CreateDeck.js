@@ -1,67 +1,55 @@
-// The Home screen has a Create Deck button that brings the user to the Create Deck screen.
-// path should be: /decks/new
-// 1) breadcrumb navigtion bar with a link to home '/' followed by the text Create Deck ex: Home/Create Deck
-// 2) A form is shown with appropriate fields for creating a new deck
-// --- name field is an <input> field of type text
-// --- description field is a <textarea> field that can be multiple lines of text
-// IF user clicks submit, the user is taken to the DECK screen
-// IF user clicks cancel, the user is taken to the HOME screen
-import React, { useState } from "react"; // import react & useState hook
-import { Link, useHistory, useParams } from "react-router-dom"; // import Link element to navigate to another page and import useHistory hook
-import { readDeck } from "../utils/api/index";
+import React, { useState } from "react";
+import DeckCreateNav from "./DeckCreateNav";
+import DeckForm from "./DeckForm";
+import { createDeck } from "../utils/api";
+import { useHistory } from "react-router-dom";
 
-function CreateDeck() {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const history = useHistory();
-    const { deckId } = useParams();
-    const [id, setId] = useState(null);
+export default function DeckCreate() {
+  const initialFormData = {
+    name: "",
+    description: "",
+  };
 
-    useEffect(() => {
-        const fetchId = () => {
-            const response = readDeck(deckId);
-            setId(response);
-        }
-        fetchId();
-    }, []);
-    
-    const handleSubmit = (event) => {
-        event.preventDefault(); // prevent default behavior of form submissions
-        setName(""); // this clears name input after form submits
-        setDescription(""); // this clears description textarea after form submits
-        history.push(`/decks/${deckId}`);
-    }
-    
-    const handleNameChange = (event) => setName(event.target.value);
-    const handleDescriptionChange = (event) => setDescription(event.target.value);
-    
-    const handleCancel = () => {
-        history.push("/");
-    }
-    
-    return (
-        <>
-        <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">Create Deck</li>
-            </ol>
-        </nav>
-        <h1>Create Deck</h1>
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input id="name" type="text" placeholder="Deck Name" name="name" onChange={handleNameChange} value={name} class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" placeholder="Brief description of the deck" name="description" onChange={handleDescriptionChange} value={description} class="form-control" />
-            </div>
-            <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
-            <button type="submit" className="btn btn-primary mx-1">Submit</button>
-        </form>
-        </>
-    )
+  const [formData, setFormData] = useState({ ...initialFormData });
+  const history = useHistory();
+
+  //handle changes made to inputs so they can correctly be submitted
+  const handleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
+
+  //handle submission of form using createDeck() function from API, and clear formData upon submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createDeck(formData);
+    setFormData({ ...initialFormData });
+  };
+  return (
+    <div className="deck-new">
+      <DeckCreateNav />
+      <DeckForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+      <div>
+        <button
+          className="btn btn-secondary m-2"
+          onClick={() => history.push("/")}
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="btn btn-primary m-2"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
 }
-
-export default CreateDeck;
