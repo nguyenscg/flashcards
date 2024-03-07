@@ -3,6 +3,10 @@ import { readCard, createCard, updateCard } from "../utils/api"; // import readC
 import { useHistory, useParams } from "react-router-dom";
 
 function FormCard({ card, handleChange, handleSubmit, handleCancel }) {
+    const { deckId, cardId } = useParams();
+    const history = useHistory();
+    const [edit, setEdit] = useState(null);
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group">
