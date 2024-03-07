@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, readCard, updateCard } from "../utils/api/index"; // import readDeck function and readCard function
 import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams, and useHistory hooks
+import FormCard from "./FormCard"; // import FormCard component
 
 function EditCard() {
     const { deckId, cardId } = useParams();

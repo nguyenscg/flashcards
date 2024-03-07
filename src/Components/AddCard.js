@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react"; // import React, useState hook, and useEffect hook
 import { readDeck, createCard } from "../utils/api/index"; // import readDeck function
 import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams hook, useHistory hook
+import FormCard from "./FormCard"; // import FormCard component
 
 
 function AddCard() {
