@@ -18,7 +18,7 @@ function CreateDeck() {
         event.preventDefault(); // prevent default behavior of form submissions
         setName(""); // this clears name input after form submits
         setDescription(""); // this clears description textarea after form submits
-        history.push("/decks/:deckId");
+        history.push(`/decks/${deckId}`);
     }
     
     const handleNameChange = (event) => setName(event.target.value);
