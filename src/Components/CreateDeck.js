@@ -38,8 +38,8 @@ function CreateDeck() {
         </nav>
         <h1>Create Deck</h1>
         <form onSubmit={handleSubmit}>
-            <div class="form-group">
-                <label for="name">Name</label>
+            <div className="form-group">
+                <label htmlFor="name">Name</label>
                 <input id="name" type="text" placeholder="Deck Name" name="name" onChange={handleNameChange} value={name} class="form-control" />
             </div>
             <div class="form-group">
