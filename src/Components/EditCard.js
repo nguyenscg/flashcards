@@ -95,12 +95,10 @@ function EditCard() {
             </nav>
             <h2>Edit Card</h2>
             <FormCard
-                card={card}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                handleCancel={handleCancel}
-                isEditing={true}
-                />
+            formData={card}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            />
             {/* <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="front">Front</label>

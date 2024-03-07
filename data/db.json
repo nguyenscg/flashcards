@@ -396,6 +396,30 @@
       "back": "",
       "deckId": 1,
       "id": 65
+    },
+    {
+      "front": "",
+      "back": "",
+      "deckId": 1,
+      "id": 66
+    },
+    {
+      "front": "",
+      "back": "",
+      "deckId": 1,
+      "id": 67
+    },
+    {
+      "front": "React",
+      "back": "Backend",
+      "deckId": 1,
+      "id": 68
+    },
+    {
+      "front": "front",
+      "back": "back",
+      "deckId": 1,
+      "id": 69
     }
   ]
 }
