@@ -7,7 +7,6 @@ import { readDeck, createCard } from "../utils/api/index"; // import readDeck fu
 import { Link, useParams, useHistory } from "react-router-dom"; // import Link element, useParams hook, useHistory hook
 import FormCard from "./FormCard"; // import FormCard component
 
-
 function AddCard() {
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
@@ -20,8 +19,7 @@ function AddCard() {
     };
 
     const [formData, setFormData] = useState(initialState)
-    
-    useEffect(() => {
+       useEffect(() => {
         const fetchDeck = async () => {
             try {
                 const deckData = await readDeck(deckId);
@@ -65,6 +63,7 @@ function AddCard() {
                  formData={formData}
                  handleChange={handleChange}
                  handleSubmit={handleSave}
+                 isEditing={false}
             />
             {/* <form>
                 <div className="form-group">
@@ -75,9 +74,9 @@ function AddCard() {
                     <label htmlFor="back">Back</label>
                     <textarea id="back" name="back" className="form-control" type="text" placeholder="Back side of card" onChange={handleChange}/>
                 </div>
+                <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
+                <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
             </form> */}
-            <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
-            <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
         </div>
     );
 }
