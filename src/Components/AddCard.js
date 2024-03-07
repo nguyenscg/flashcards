@@ -60,7 +60,13 @@ function AddCard() {
                 </ol>
             </nav>
             <h2>{deck.name}: Add Card</h2>
-            <form>
+            <FormCard
+                formData={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSave}
+                buttonText="Save"
+            />
+            {/* <form>
                 <div className="form-group">
                     <label htmlFor="front">Front</label>
                     <textarea id="front" name="front" className="form-control" placeholder="Front side of card" onChange={handleChange}/>
@@ -71,7 +77,7 @@ function AddCard() {
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
                 <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
-            </form>
+            </form> */}
         </div>
     );
 }
