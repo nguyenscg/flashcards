@@ -65,19 +65,21 @@ function AddCard() {
                  handleSubmit={handleSave}
                  isEditing={false}
             />
-            {/* <form>
-                <div className="form-group">
-                    <label htmlFor="front">Front</label>
-                    <textarea id="front" name="front" className="form-control" placeholder="Front side of card" onChange={handleChange}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="back">Back</label>
-                    <textarea id="back" name="back" className="form-control" type="text" placeholder="Back side of card" onChange={handleChange}/>
-                </div>
-                <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
-                <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
-            </form> */}
-        </div>
+                  <div>
+        <button
+          className="btn btn-secondary m-2"
+          onClick={() => history.push(`/decks/${deckId}`)}
+        >
+          Done
+        </button>
+        <button
+          type="submit"
+          className="btn btn-primary m-2"
+          onClick={handleSave}
+        >
+          Save
+        </button>
+      </div></div>
     );
 }
 
