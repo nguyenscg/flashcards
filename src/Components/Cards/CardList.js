@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { deleteCard, updateDeck } from "../../utils/api/index";
 
 function CardList({ deck }) {
   const { deckId } = useParams();
+  const history = useHistory();
 
   //delete a card
   const handleCardDelete = async ({ target }) => {
@@ -38,9 +39,12 @@ function CardList({ deck }) {
                   </div>
                   <div className="col-3 pt-2 pb-1">
                     <Link to={`/decks/${deckId}/cards/${card.id}/edit`}><button className="btn btn-secondary mr-1"><i class="bi bi-pencil"></i>Edit</button></Link>
-                    <button onClick={handleCardDelete} value={card.id} className="btn btn-danger">
-                      <i class="bi bi-trash"></i> Delete
-                    </button>
+                    <button onClick={async () => { if (window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")) { 
+                      await deleteCard(card.id);
+                      history.go(0);}}}
+                      name="deleteCard"
+                      value={card.id}className="btn btn-danger ml-2"><i className="fa fa-trash" aria-hidden="true"></i>
+                      </button>
                   </div>
                 </div>
               </div>
