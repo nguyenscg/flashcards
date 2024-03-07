@@ -94,7 +94,13 @@ function EditCard() {
                 </ol>
             </nav>
             <h2>Edit Card</h2>
-            <form onSubmit={handleSubmit}>
+            <FormCard
+                card={card}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                handleCancel={handleCancel}
+                />
+            {/* <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="front">Front</label>
                     <textarea 
@@ -117,7 +123,7 @@ function EditCard() {
                 </div>
                 <button type="button" className="btn btn-secondary mx-1" onClick={handleCancel}>Cancel</button>
                 <button type="submit" className="btn btn-primary mx-1">Submit</button>
-            </form>
+            </form> */}
         </div>
     );
 }
