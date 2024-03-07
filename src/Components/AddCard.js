@@ -75,9 +75,9 @@ function AddCard() {
                     <label htmlFor="back">Back</label>
                     <textarea id="back" name="back" className="form-control" type="text" placeholder="Back side of card" onChange={handleChange}/>
                 </div>
-                <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
-                <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
             </form> */}
+            <button type="button" className="btn btn-secondary mx-1" onClick={handleDone}>Done</button>
+            <button type="button" className="btn btn-primary mx-1" onClick={handleSave}>Save</button>
         </div>
     );
 }
