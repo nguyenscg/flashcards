@@ -6,7 +6,7 @@ function DeckList({ decks }) {
     const history = useHistory();
     const { deckId, cardId } = useParams();
 
-  const handleDelete = async () => {
+  const handleDelete = async (deckId) => {
     const confirmMessage = window.confirm("Delete this Deck? You will not be able to recover it.")
 
     if(confirmMessage) {
@@ -42,7 +42,7 @@ function DeckList({ decks }) {
                   </Link>
                 </div>
                 <div className="col-2">
-                  <button value={deck.id} className="btn btn-danger" onClick={handleDelete}><i class="bi bi-trash"></i>Delete</button>
+                <button value={deck.id} className="btn btn-danger" onClick={()=>handleDelete(deck.id)}><i class="bi bi-trash"></i>Delete</button>
                 </div>
               </div>
             </div>
